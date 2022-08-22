@@ -1,6 +1,6 @@
 import React from "react";
 import ListComponent from "./ListComponent";
-import LoginComponent from "./loginComponent";
+
 
 export default class UsersLists extends React.Component{
 	state = {lists: [], loading:true}
@@ -24,17 +24,12 @@ export default class UsersLists extends React.Component{
 		
 		var token = localStorage.getItem('token');
 		
-		if(!token){
-			return <LoginComponent />
-		}
-			
-		else{
 			return (
 				<div>
 					{listApi.map(list => <ListComponent key={list.id} listName={list.name} items={list.item_set}/>)}
 				</div>
 			)
-		}
+		
     }
     
 }

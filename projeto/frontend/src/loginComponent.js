@@ -1,7 +1,8 @@
 import React from "react";
+import UsersLists from "./UsersList";
 
 
-export default class LoginForm extends React.Component {
+export default class LoginComponent extends React.Component {
     constructor(props) {
       super(props);
       this.state = {value: '', password: ''};
@@ -28,21 +29,28 @@ export default class LoginForm extends React.Component {
         };
         fetch(url, requestOptions)
             .then(response => response.json())
-            .then(data => localStorage.setItem('token', data.token));
+            .then(data => {
+                localStorage.setItem('token', data.token);
+                this.setState({token: data.token});
+            });
         
         event.preventDefault();
     }
   
-    render() {
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Nome:
-            <input type="text" value={this.state.username} onChange={this.handleChange} />
-            <input type="password" value={this.state.password} onChange={this.handleChangePassword} />
-          </label>
-          <input type="submit" value="Enviar" />
-        </form>
-      );
+    render(){
+        var token = localStorage.getItem('token');
+
+        if (!token){
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>Nome: <input type="text" value={this.state.username} onChange={this.handleChange} /> </label>
+                    <label>Senha: <input type="password" value={this.state.password} onChange={this.handleChangePassword} /></label>
+                    <input type="submit" value="Enviar" />
+                </form>
+            );
+        }
+        else {
+            return <UsersLists />
+        }
     }
 }

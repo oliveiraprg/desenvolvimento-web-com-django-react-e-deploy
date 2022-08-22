@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import UsersLists from './UsersList';
+import LoginComponent from './loginComponent';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UsersLists />
+    <LoginComponent />
   </React.StrictMode>
 );
 
