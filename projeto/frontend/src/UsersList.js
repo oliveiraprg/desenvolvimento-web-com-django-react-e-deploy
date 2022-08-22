@@ -16,7 +16,6 @@ export default class UsersLists extends React.Component{
 		var url = 'http://localhost:8000/list/';
 		const response = await fetch(url, config)
 		const data = await response.json();
-		console.log(data)
 		this.setState({lists:data, loading:false})
 	}
 	
@@ -24,7 +23,7 @@ export default class UsersLists extends React.Component{
     	const listApi = this.state.lists;
 		return (
 	        <div>
-				{listApi.map(list => <ListComponent key={list.id} listName={list.name}/>)}
+				{listApi.map(list => <ListComponent key={list.id} listName={list.name} items={list.item_set}/>)}
 	        </div>
 	    )
     }
